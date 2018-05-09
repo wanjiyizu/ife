@@ -1,4 +1,5 @@
 import Page from './components/page';
+console.log();
 const components = {
     Page
 }
