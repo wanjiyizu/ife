@@ -1,5 +1,5 @@
 import Hello from '../packages/input/input'
-
+cconsole.log('=====');
 const install = function (Vue) {
   if (install.installed) return
   Vue.component(Hello.name, Hello)
