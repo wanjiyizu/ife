@@ -1,13 +1,21 @@
-import Hello from '../packages/input/input';
+import Input from '../packages/input/input';
+import Page from '../packages/page/page';
+
+const components = [
+	Input,
+	Page
+];
 
 const install = function (Vue) {
 	if (install.installed) return;
-	Vue.component(Hello.name, Hello);
+	components.forEach(component => {
+		Vue.component(component.name, component);
+	});
 };
 if (typeof window !== 'undefined' && window.Vue) {
 	install(window.VUe);
 }
 export default {
 	install,
-	Hello
+	...components
 };
