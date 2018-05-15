@@ -9,3 +9,10 @@ export default {
 	name: 'App'
 };
 </script>
+<style>
+  #app {
+    display: flex;
+    margin-top: 150px;
+    justify-content: center;
+  }
+</style>

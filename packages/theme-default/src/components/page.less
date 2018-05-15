@@ -1,0 +1,79 @@
+.ife-page {
+    list-style: none;
+    display: flex;
+    &-item {
+        color: @text-color;
+        height: @btn-circle-size;
+        min-width: @btn-circle-size;
+        margin-right: 8px;
+        cursor: pointer;
+        line-height: @btn-circle-size;
+        text-align: center;
+        border-radius: @btn-border-radius;
+        border: 1px solid @border-color-base;
+        &:hover {
+            border-color: @primary-color;
+            color: @primary-color;
+        }
+        &-active {
+            background-color: @primary-color;
+            color: #fff;
+            &:hover {
+                border-color: @primary-color;
+                color: #fff;
+            }
+        }
+    }
+    &-item-jump-prev, &-item-jump-next {
+        &:after {
+            height: 40px;
+            content: "•••";
+            display: block;
+            cursor: pointer;
+            line-height: 40px;
+        }
+    }
+    &-prev,
+    &-next,
+    &-item-jump-prev,
+    &-item-jump-next {
+        min-width: @btn-circle-size;
+        color: @text-color;
+        height: @btn-circle-size;
+        margin-right: 8px;
+        cursor: pointer;
+        line-height: @btn-circle-size;
+        text-align: center;
+        border-radius: @btn-border-radius;
+        border: 1px solid @border-color-base;
+    }
+    &-prev,
+    &-next {
+        &:hover {
+            border-color: @primary-color;
+            color: @primary-color;
+        }
+    }
+    &-disabled {
+        cursor: @cursor-disabled;
+        &:hover {
+            border-color: @border-color-base;
+        }
+    }
+    &-options {
+        &-elevator {
+            height: @btn-circle-size;
+            vertical-align: middle;
+            line-height: @btn-circle-size;
+            input {
+                width: 50px;
+                outline: none;
+                margin: 0 8px;
+                padding-left: 4px;
+                height: @btn-circle-size;
+                border-radius: @btn-border-radius;
+                border: 1px solid @border-color-base;
+            }
+        }
+    }
+}

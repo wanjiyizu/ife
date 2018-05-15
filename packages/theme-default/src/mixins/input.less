@@ -1,0 +1,39 @@
+.hover(@color: @input-hover-border-color) {
+    border-color: tint(@color, 20%);
+}
+.active(@color: @input-hover-border-color) {
+    border-color: tint(@color, 20%);
+    outline: none;
+    box-shadow: 0 0 0 2px fade(@color, 20%);
+}
+.disabled() {
+    opacity: 1;
+    color: #ccc;
+    cursor: @cursor-disabled;
+    background-color: @input-disabled-bg;
+    &:hover {
+        .hover(@input-border-color);
+    }
+}
+.input {
+    width: 100%;
+    height: @input-height-base;
+    color: @input-color;
+    font-size: @font-size-small;
+    background-color: @input-bg;
+    line-height: @line-height-base;
+    border-radius: @border-radius-base;
+    border: 1px solid @input-border-color;
+    padding: @input-padding-vertical-base @input-padding-horizontal;
+    transition: border @transition-time @ease-in-out, background @transition-time @ease-in-out, box-shadow @transition-time @ease-in-out;
+    .placeholder();
+    &:hover {
+        .hover();
+    }
+    &:focus {
+        .active();
+    }
+    &[disabled] {
+        .disabled();
+    }
+}

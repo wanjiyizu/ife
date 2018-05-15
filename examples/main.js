@@ -4,7 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router.config';
 import ife from '@/index';
-import './index.less';
+import 'packages/theme-default/src/index.less';
 
 Vue.use(ife);
 
