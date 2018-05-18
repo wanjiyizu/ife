@@ -15,7 +15,44 @@
         .hover(@input-border-color);
     }
 }
-.input {
+.input-affix-wrapper(@inputClass) {
+    display: table;
+    width: 100%;
+    border-radius: @border-radius-base;
+    border: 1px solid @input-border-color;
+    .@{inputClass} {
+        border: none;
+    }
+    &-focus {
+        .active();
+        .@{inputClass} {
+            &:focus {
+                border-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+    .@{inputClass}-prefix,
+    .@{inputClass}-suffix {
+        display: table-cell;
+    }
+    // .@{inputClass}-prefix {
+    //     left: @input-padding-horizontal + 1px;
+    // }
+    // .@{inputClass}-suffix {
+    //     right: @input-padding-horizontal + 1px;
+    // }
+    // .@{inputClass}:not(:first-child) {
+    //     padding-left: @input-affix-width;
+    // }
+    // .@{inputClass}:not(:last-child) {
+    //     padding-right: @input-affix-width;
+    // }
+    &:hover {
+        .hover();
+    }
+}
+.input() {
     width: 100%;
     height: @input-height-base;
     color: @input-color;
@@ -35,5 +72,48 @@
     }
     &[disabled] {
         .disabled();
+    }
+}
+.input-group(@inputClass) {
+    display: table;
+
+    &-addon,
+    > .@{inputClass},
+    > .@{inputClass}-affix-wrapper {
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+    }
+    &-addon,
+    > .@{inputClass} {
+        display: table-cell;
+    }
+
+    > .@{inputClass}-affix-wrapper:first-child,
+    > .@{inputClass}:first-child,
+    &-addon:first-child {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    > .@{inputClass}-affix-wrapper:last-child,
+    > .@{inputClass}:last-child,
+    &-addon:last-child {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    &-addon {
+        background-color: #eee;
+        border: 1px solid @input-border-color;
+        border-radius: @border-radius-base;
+    }
+
+    &-addon:first-child {
+        border-right: 0;
+    }
+
+    &-addon:last-child {
+        border-left: 0;
     }
 }

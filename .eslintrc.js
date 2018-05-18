@@ -11,7 +11,7 @@ module.exports = {
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential', 
+    'plugin:vue/essential',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
     'standard'
   ],
@@ -24,6 +24,10 @@ module.exports = {
     'no-tabs': 'off',
     'indent': ["error", 'tab'],
     'semi': ['error', 'always'],
+    'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
+    'vue/html-indent': ['error', 'tab'],
+    // Turn off Vetur's template validation
+    'vue/html-self-closing': 'off',
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development

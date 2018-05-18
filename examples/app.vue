@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-	<router-view/>
-  </div>
+	<div id="app">
+		<router-view/>
+	</div>
 </template>
 
 <script>
@@ -10,9 +10,9 @@ export default {
 };
 </script>
 <style>
-  #app {
-    display: flex;
-    margin-top: 150px;
-    justify-content: center;
-  }
+	#app {
+		display: flex;
+		margin-top: 150px;
+		justify-content: center;
+	}
 </style>

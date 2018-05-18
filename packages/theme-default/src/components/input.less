@@ -1,6 +1,13 @@
-.ife-input {
+@input-prefix-cls: ~"@{css-prefix}input";
+.@{input-prefix-cls} {
     .input;
     &-wrapper {
         width: 300px;
     }
+}
+.@{input-prefix-cls}-affix-wrapper {
+    .input-affix-wrapper(~"ife-input");
+}
+.@{input-prefix-cls}-group {
+    .input-group(~"@{input-prefix-cls}");
 }
