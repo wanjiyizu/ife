@@ -1,8 +1,10 @@
 import Input from '../packages/input/input';
+import MaskInput from '../packages/mask-input/mask-input';
 import Page from '../packages/page/page';
 
 const components = [
 	Input,
+	MaskInput,
 	Page
 ];
 

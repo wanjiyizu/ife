@@ -7,6 +7,10 @@
 			<li>
 				<router-link to="/input">输入框Input</router-link>
 			</li>
+			<li>
+				<router-link to="/mask-input">maskInput</router-link>
+			</li>
+		</ul>
 		</ul>
 	</nav>
 </template>
