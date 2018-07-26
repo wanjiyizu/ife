@@ -8,6 +8,7 @@
 			<MaskInput
 				v-if="mask"
 				v-model="currentValue"
+				@on-change="changeHandle"
 				:mask="mask" />
 			<input
 				v-else
@@ -17,7 +18,7 @@
 				autocomplete="off"
 				@blur="blurHandle"
 				@focus="focusHandle"
-				:value="formatterValue"
+				:value="currentValue"
 				@input="inputHanlde"
 				:class="inputClasses"
 				:placeholder="placeholder"
@@ -30,6 +31,7 @@
 		<MaskInput
 			v-else-if="mask"
 			v-model="currentValue"
+			@on-change="changeHandle"
 			:mask="mask" />
 		<input
 			v-else
@@ -40,7 +42,7 @@
 			@blur="blurHandle"
 			@focus="focusHandle"
 			@input="inputHanlde"
-			:value="formatterValue"
+			:value="currentValue"
 			:class="inputClasses"
 			:placeholder="placeholder"
 			@keydown.stop="keydownHandle"
@@ -152,22 +154,39 @@ export default {
 		}
 	},
 	methods: {
+		changeHandle (value) {
+			this.$emit('input', value);
+		},
 		inputHanlde (event) {
-			let value = event.target.value;
+			let value = event.target.value.trim();
 			if (this.inputType === 'number') {
 				let match = /^-?[1-9]*(\.\d*)?$|^-?0(\.\d*)?$/;
-				if (match.test(value) || value === '') {
+				if (value.length === 0) {
 					this.currentValue = value;
+					this.$emit('input', value);
+					return;
+				}
+				if (match.test(value)) {
+					if (Number(value) > this.max) {
+						this.setNumber(this.max);
+					} else if (Number(value) < this.min) {
+						this.setNumber(this.min);
+					} else {
+						this.setNumber(value);
+					}
+					let arr = value.split('.');
+					if (arr !== undefined && arr.length > 1) {
+						if (arr[1].length > this.precision) {
+							event.target.value = this.currentValue;
+							this.$emit('input', this.currentValue);
+						}
+					}
 				} else {
 					event.target.value = this.currentValue;
 				}
-				let number = Number.isNaN(Number(this.currentValue)) || Number(this.currentValue) === 0 ? '' : Number(this.currentValue);
-				if (this.precision && number !== '') {
-					number = number.toFixed(this.precision);
-				}
-				this.$emit('input', number);
 			} else {
 				this.currentValue = value;
+				this.$emit('input', this.currentValue);
 			}
 		},
 		keydownHandle (event) {
@@ -195,7 +214,7 @@ export default {
 		},
 		changeStep (type, value) {
 			if (isNaN(value)) return;
-			let val;
+			let val = Number(this.currentValue);
 			if (type === 'up') {
 				if (this.addNum(value, this.step) <= this.max) {
 					val = this.addNum(value, this.step);
@@ -205,9 +224,9 @@ export default {
 					val = this.addNum(value, -this.step);
 				}
 			}
-			this.setValue(val);
+			this.setNumber(val);
 		},
-		setValue (val) {
+		setNumber (val) {
 			if (!isNaN(this.precision)) {
 				val = Number(Number(val).toFixed(this.precision));
 			}
@@ -217,18 +236,18 @@ export default {
 		addNum (num1, num2) {
 			let sq1, sq2, m;
 			try {
-				sq1 = num1.toString().split('.')[1].length;
+				sq1 = num1.toString().split('.')[1].length; // 获取小数位数
 			}
 			catch (e) {
 				sq1 = 0;
 			}
 			try {
-				sq2 = num2.toString().split('.')[1].length;
+				sq2 = num2.toString().split('.')[1].length;  // 获取小数位数
 			}
 			catch (e) {
 				sq2 = 0;
 			}
-			m = Math.pow(10, Math.max(sq1, sq2));
+			m = Math.pow(10, Math.max(sq1, sq2)); // 0.2 + 0.222 = 0.42200000000000004 (0.2 * 1000 + 0.222 * 1000) / 1000 = 2.422
         	return (Math.round(num1 * m) + Math.round(num2 * m)) / m;
 		},
 		focusHandle (event) {

@@ -81,6 +81,7 @@ export default {
 			this.previousPlaceholder = placeholder;
 			inputElement.value = inputElementValue;
 			this.$emit('input', realValue);
+			this.$emit('on-change', realValue);
 			this.safeSetSelection(inputElement, adjustedCaretPosition);
 		},
 		safeSetSelection (element, selectionPosition) {

@@ -1,0 +1,28 @@
+@select-prefix-cls: ~'@{css-prefix}select';
+.@{select-prefix-cls} {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    color: @text-color;
+    line-height: normal;
+    font-size: @font-size-base;
+    &-selection {
+        display: block;
+        box-sizing: border-box;
+        outline: none;
+        user-select: none;
+        cursor: pointer;
+        background-color: #fff;
+        border-radius: @btn-border-radius;
+        border: 1px solid @border-color-base;
+    }
+    &-single &-selection {
+        height: @input-height-base;
+
+        .@{select-prefix-cls}-placeholder {
+            height: @input-height-base - 2;
+            line-height: @input-height-base - 2;
+        }
+    }
+}

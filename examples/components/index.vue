@@ -10,6 +10,12 @@
 			<li>
 				<router-link to="/mask-input">maskInput</router-link>
 			</li>
+			<li>
+				<router-link to="/button">button</router-link>
+			</li>
+			<li>
+				<router-link to="/select">select</router-link>
+			</li>
 		</ul>
 		</ul>
 	</nav>

@@ -1,11 +1,15 @@
+import Button from '../packages/button/button';
 import Input from '../packages/input/input';
 import MaskInput from '../packages/mask-input/mask-input';
 import Page from '../packages/page/page';
+import Select from '../packages/select/select';
 
 const components = [
+	Button,
 	Input,
 	MaskInput,
-	Page
+	Page,
+	Select
 ];
 
 const install = function (Vue) {
